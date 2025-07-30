@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/webhook.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/webhook",
+      "dest": "/api/webhook.py"
+    },
+    {
+      "src": "/watch/(.*)",
+      "dest": "/api/stream.py"
+    },
+    {
+      "src": "/health",
+      "dest": "/api/health.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/home.py"
+    }
+  ],
+  "env": {
+    "TELEGRAM_API_ID": "@telegram_api_id",
+    "TELEGRAM_API_HASH": "@telegram_api_hash", 
+    "TELEGRAM_BOT_TOKEN": "@telegram_bot_token",
+    "URL_SECRET": "@url_secret"
+  }
+}
